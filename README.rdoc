@@ -2,6 +2,18 @@
 
 Description goes here.
 
+== Testing
+
+Clone the Pwnalytics repository and run the Rails server locally.
+
+    git clone git://github.com/pwnall/pwnalytics.git
+    cd pwnalytics
+    bundle
+    rake db:create db:migrate db:seed
+    rails s
+    
+The specs assume a local server for integration testing.
+
 == Contributing to pwnalytics_client
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
