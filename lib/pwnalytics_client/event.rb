@@ -1,3 +1,5 @@
+require 'hashie/mash'
+
 # :nodoc: namespace
 class PwnalyticsClient
 
@@ -15,13 +17,16 @@ class Event
     
     @name = json_data['name']
     @url = self.class.parse_url json_data['page']
-    @ref = self.class.parse_url json_data['page']
+    @ref = self.class.parse_url json_data['referrer']
     if json_data['browser'] && json_data['browser']['time']
       @time = Time.at(json_data['browser']['time'] / 1000.0)
     else
       @time = nil
     end
-    @data = json_data['data']
+    @ip = json_data['ip']
+    @browser_ua = json_data['browser'] && json_data['browser']['ua']
+    @pixels = Hashie::Mash.new json_data['pixels']
+    @data = Hashie::Mash.new json_data['data']
   end
   
   # PwnalyticsClient::Site that the event occured on.
@@ -35,12 +40,18 @@ class Event
   attr_reader :ref
   # When the event was triggerred.
   attr_reader :time
+  # IP of the computer where the event was triggered (e.g., "127.0.0.1").
+  attr_reader :ip
+  # User-Agent string of the browser where the event was triggered.
+  attr_reader :browser_ua
+  # Screen metrics: screen size, window size and position.
+  attr_reader :pixels
   # User-defined data associated with the event.
   attr_reader :data
   
   # Parses an URL out of a Pwnalytics server response.
   def self.parse_url(json_data)
-    if json_data && json_data['url']
+    if json_data && json_data['url'] && json_data['url'] != 'null'
       URI.parse json_data['url']
     else
       nil
