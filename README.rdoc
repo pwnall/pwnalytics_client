@@ -1,6 +1,48 @@
 = pwnalytics_client
 
-Description goes here.
+Ruby gem providing a client for the Pwnalytics REST API.
+
+== Usage
+
+First, create a PwnalyticsClient pointing to your Pwnalytics instance:
+
+    client = PwnalyticsClient.new :host => 'localhost', :port => 3000,
+                                  :user => 'config', :password => 'vars'
+
+Or, if you're using SSL:
+
+    client = PwnalyticsClient.new :host => 'localhost', :port => 3000,
+                                  :user => 'config', :password => 'vars',
+                                  :ssl => true,
+                                  :net_http => { :ca_path => '/etc/ssl/certs' }
+
+Get the site that you want data for:
+
+    site = client.site('AA123456')
+    
+Or, if you don't know the site's UID, you can list all of them.
+
+    sites = client.sites
+    
+Finally, get the logged events for that site:
+
+    # Get everything.
+    events = site.events
+    
+    # Restrict query to events with certain names.
+    events = site.events :names => ['page', 'unload']
+
+Events have the same data as in the JSON output.
+
+    event.name        # "page"
+    event.ip          # "127.0.0.1"
+    event.browser_ua  # "Mozilla/5.0 ..."
+    event.url         # <URI::HTTP:0x7f6750505078 URL:http://localhost>
+    event.ref         # <URI::HTTP:0x7f6750505078 URL:http://www.google.com>
+    event.data.your_property  # "your_value"
+    event.pixels.document.width  # 1680
+
+The RSpec tests cover the entire API.
 
 == Testing
 
@@ -26,6 +68,4 @@ The specs assume a local server for integration testing.
 
 == Copyright
 
-Copyright (c) 2011 Victor Costan. See LICENSE.txt for
-further details.
-
+Copyright (c) 2011 Victor Costan. See LICENSE.txt for further details.
