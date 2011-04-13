@@ -30,6 +30,7 @@ Gem::Specification.new do |s|
     "lib/pwnalytics_client/client.rb",
     "lib/pwnalytics_client/event.rb",
     "lib/pwnalytics_client/site.rb",
+    "pwnalytics_client.gemspec",
     "spec/lib/pwnalytics_client/client_spec.rb",
     "spec/lib/pwnalytics_client/event_spec.rb",
     "spec/lib/pwnalytics_client/site_spec.rb",
