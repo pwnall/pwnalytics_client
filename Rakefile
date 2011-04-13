@@ -17,7 +17,7 @@ Jeweler::Tasks.new do |gem|
   gem.license = 'MIT'
   gem.summary = %Q{Client library for pulling data from a Pwnalytics server}
   gem.description = %Q{Client library for pulling data from a Pwnalytics server}
-  gem.email = 'costan@gmail.com'
+  gem.email = 'victor@costan.us'
   gem.authors = ['Victor Costan']
   # Include your dependencies below. Runtime dependencies are required when using your gem,
   # and development dependencies are only needed for development (ie running rake tasks, tests, etc)
