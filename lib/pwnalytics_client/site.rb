@@ -30,11 +30,16 @@ class Site
   #
   # Options supports the following keys:
   #     :names:: only get events whose names are contained in this array
+  #     :limit:: return the first events matching the criteria
+  #
+  # Events will be resturned in the reverse order of their occurrence.
   def events(options = {})
     request = "/web_properties/#{@uid}/events.json?"
+    request << "limit=#{options[:limit] || 'no'}"
+    
     if options[:names]
       request << options[:names].
-          map { |name| 'names%5B%5D=' + CGI.escape(name) }.join('&')
+          map { |name| '&names%5B%5D=' + CGI.escape(name) }.join('')
     end
     @client.request(request).map { |data| Event.new self, data }
   end

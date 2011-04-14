@@ -31,6 +31,9 @@ Finally, get the logged events for that site:
     
     # Restrict query to events with certain names.
     events = site.events :names => ['page', 'unload']
+    
+    # Avoid a data flood.
+    events = site.events :limit => 200
 
 Events have the same data as in the JSON output.
 
