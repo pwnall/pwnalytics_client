@@ -18,6 +18,7 @@ class Event
     @name = json_data['name']
     @url = self.class.parse_url json_data['page']
     @ref = self.class.parse_url json_data['referrer']
+    @visitor = json_data['visitor'] && json_data['visitor']['uid']
     if json_data['browser'] && json_data['browser']['time']
       @time = Time.at(json_data['browser']['time'] / 1000.0)
     else
@@ -38,6 +39,8 @@ class Event
   attr_reader :url
   # Referer URL for the page where the event was triggerred.
   attr_reader :ref
+  # UID for the visitor that triggered the event.
+  attr_reader :visitor
   # When the event was triggerred.
   attr_reader :time
   # IP of the computer where the event was triggered (e.g., "127.0.0.1").

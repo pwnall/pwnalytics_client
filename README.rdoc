@@ -35,6 +35,7 @@ Finally, get the logged events for that site:
 Events have the same data as in the JSON output.
 
     event.name        # "page"
+    event.visitor     # "12f49459540.11faa9b963f5c4f0"
     event.ip          # "127.0.0.1"
     event.browser_ua  # "Mozilla/5.0 ..."
     event.url         # <URI::HTTP:0x7f6750505078 URL:http://localhost>

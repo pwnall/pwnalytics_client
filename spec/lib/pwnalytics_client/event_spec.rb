@@ -33,6 +33,10 @@ describe PwnalyticsClient::Event do
         merge('page' => nil)).url.should == nil
   end
   
+  it 'should parse out the visitor ID' do
+    event.visitor.should == '12f49459540.11faa9b963f5c4f0'
+  end
+  
   it 'should parse out the time' do
     event.time.gmtime.to_s.should == "Wed Apr 13 08:10:42 UTC 2011"
   end
