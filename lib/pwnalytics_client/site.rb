@@ -39,7 +39,7 @@ class Site
     
     if options[:names]
       request << options[:names].
-          map { |name| '&names%5B%5D=' + CGI.escape(name) }.join('')
+          map { |name| '&names%5B%5D=' + CGI.escape(name.to_s) }.join('')
     end
     @client.request(request).map { |data| Event.new self, data }
   end

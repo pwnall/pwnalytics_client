@@ -14,9 +14,9 @@ describe PwnalyticsClient::Site do
     it 'should encode name filter if given' do
       client.should_receive(:request).
           with('/web_properties/AA/events.json?limit=no&' +
-               'names%5B%5D=AB&names%5B%5D=C+D').
+               'names%5B%5D=ab&names%5B%5D=C+D').
           and_return({})
-      site.events(:names => ['AB', 'C D']).should be_empty
+      site.events(:names => [:ab, 'C D']).should be_empty
     end
     
     it 'should encode limit filter if given' do
