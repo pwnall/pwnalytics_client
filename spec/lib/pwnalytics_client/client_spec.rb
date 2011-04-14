@@ -93,5 +93,19 @@ describe PwnalyticsClient do
     end
   end
   
-  
+  describe 'site' do
+    let(:client) { PwnalyticsClient.new integration_server_data }
+    
+    let(:site) do
+      client.should_receive(:request).with('/web_properties/AA123456.json').
+          and_return({'uid' => 'AA123456', 'name' => 'Pwnalytics itself'})
+      client.site 'AA123456'
+    end
+    
+    it 'should parse the response correctly' do
+      site.client.should == client
+      site.uid.should == 'AA123456'
+      site.name.should == 'Pwnalytics itself'
+    end
+  end
 end
