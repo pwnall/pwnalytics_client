@@ -69,17 +69,16 @@ class PwnalyticsClient
   
   # Returns an array of all Sites on this server.
   def sites
-    request('/web_properties.json').map do |site|
-      Site.new self, site['uid'], site['name']
+    request('/web_properties.json').map do |site_data|
+      Site.new self, site_data['uid'], site_data['name']
     end
   end
   
   # Returns the Site with the given UID.
   #
   # This method does a server request, to get additional property data.
-  def property(uid)
-    request('/web_property/#{uid}.json').map do |site|
-      Site.new self, site['uid'], site['name']
-    end
+  def site(uid)
+    site_data = request("/web_properties/#{uid}.json")
+    Site.new self, site_data['uid'], site_data['name']
   end
 end  # class PwnalyticsClient

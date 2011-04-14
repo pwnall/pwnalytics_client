@@ -12,9 +12,9 @@ describe PwnalyticsClient do
         response.should_not be_empty
       end
       
-      let(:js_test) { response.find { |prop| prop['uid'] == 'AA123456' }}
+      let(:js_test) { response.find { |site| site['uid'] == 'AA123456' }}
       
-      it 'should return the test property' do
+      it 'should return the test site' do
         js_test.should_not be_nil
         js_test['name'].should == 'Pwnalytics itself'
       end
@@ -28,6 +28,22 @@ describe PwnalyticsClient do
     end
     it 'should report whether it uses SSL' do
       client.ssl.should == integration_server_data[:ssl]
+    end
+    
+    let(:sites) { client.sites }
+
+    describe 'sites' do
+      it 'should have at least one entry' do
+        sites.should_not be_empty
+      end
+    end
+    
+    describe 'site' do
+      let(:uid) { sites.first.uid }
+      
+      it 'should get data matching the sites call' do
+        client.site(uid).name.should == sites.first.name
+      end
     end
   end
 
@@ -76,4 +92,6 @@ describe PwnalyticsClient do
       js_test.name.should == 'Pwnalytics itself'
     end
   end
+  
+  
 end
