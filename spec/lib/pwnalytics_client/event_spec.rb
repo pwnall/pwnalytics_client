@@ -38,7 +38,7 @@ describe PwnalyticsClient::Event do
   end
   
   it 'should parse out the time' do
-    event.time.gmtime.to_s.should == "Wed Apr 13 08:10:42 UTC 2011"
+    event.time.gmtime.to_s.should == "2011-04-13 08:10:42 UTC"
   end
   
   it 'should parse out the IP' do
@@ -55,6 +55,7 @@ describe PwnalyticsClient::Event do
     event.pixels.document.width.should == 1680
     event.pixels.document.height.should == 863
     event.pixels.window.x.should == 2215
+    p [event.pixels.window, event.pixels.window.x, event.pixels.window.y, event.pixels.window['y']]
     event.pixels.window.y.should == 181
   end
 

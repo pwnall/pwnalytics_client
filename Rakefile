@@ -11,7 +11,6 @@ require 'rake'
 
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
-  # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = 'pwnalytics_client'
   gem.homepage = 'http://github.com/pwnall/pwnalytics_client'
   gem.license = 'MIT'
@@ -19,15 +18,7 @@ Jeweler::Tasks.new do |gem|
   gem.description = %Q{Client library for pulling data from a Pwnalytics server}
   gem.email = 'victor@costan.us'
   gem.authors = ['Victor Costan']
-  # Include your dependencies below. Runtime dependencies are required when using your gem,
-  # and development dependencies are only needed for development (ie running rake tasks, tests, etc)
-  gem.add_runtime_dependency 'json', '>= 1.0.0'
-  gem.add_runtime_dependency 'hashie', '>= 1.0.0'
-  
-  gem.add_development_dependency 'rspec', '~> 2.5.0'
-  gem.add_development_dependency 'bundler', '~> 1.0.0'
-  gem.add_development_dependency 'jeweler', '~> 1.5.2'
-  gem.add_development_dependency 'rcov', '>= 0'
+  # Dependencies in Gemfile.  
 end
 Jeweler::RubygemsDotOrgTasks.new
 
@@ -44,7 +35,7 @@ end
 
 task :default => :spec
 
-require 'rake/rdoctask'
+require 'rdoc/task'
 Rake::RDocTask.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ''
 
