@@ -55,7 +55,6 @@ describe PwnalyticsClient::Event do
     event.pixels.document.width.should == 1680
     event.pixels.document.height.should == 863
     event.pixels.window.x.should == 2215
-    p [event.pixels.window, event.pixels.window.x, event.pixels.window.y, event.pixels.window['y']]
     event.pixels.window.y.should == 181
   end
 
